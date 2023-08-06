@@ -1,10 +1,12 @@
-// import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Navbar.scss";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   const handleClick = () => {
     setOpen(!open);
@@ -29,13 +31,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className={active ? "navbar active" : "navbar"}>
+    <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
-          {/* <Link to="/"> */}
-          <span className="text">fiverr</span>
-          <span className="dot">.</span>
-          {/* </Link> */}
+          <Link to="/">
+            <span className="text">fiverr</span>
+            <span className="dot">.</span>
+          </Link>
         </div>
         <div className="links">
           <span>Fiverr Business</span>
@@ -55,21 +57,31 @@ const Navbar = () => {
                 <div className="options">
                   {currentUser?.isSeller && (
                     <>
-                      <span>Gigs</span>
-                      <span>Add new gigs</span>
-                      <span>Gigs</span>
+                      {/* <Link to="/gigs">Gigs</Link> */}
+                      <Link className="link" to="/add">
+                        Add new gigs
+                      </Link>
+                      <Link className="link" to="/mygigs">
+                        MyGigs
+                      </Link>
                     </>
                   )}
-                  <span>Orders</span>
-                  <span>Messages</span>
-                  <span>Logout</span>
+                  <Link className="link" t0="/order">
+                    Orders
+                  </Link>
+                  <Link className="link" t0="/messages">
+                    Messages
+                  </Link>
+                  <Link className="link" t0="logout">
+                    Logout
+                  </Link>
                 </div>
               )}
             </div>
           )}
         </div>
       </div>
-      {active && (
+      {(active || pathname !== "/") && (
         <>
           <hr />
           <div className="menu">
