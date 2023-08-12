@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -26,7 +27,7 @@ const userSchema = new Schema(
       unique: true,
     },
     phone: {
-      type: string,
+      type: String,
       required: false,
     },
     isSeller: {
@@ -34,7 +35,7 @@ const userSchema = new Schema(
       default: false,
     },
     desc: {
-      type: string,
+      type: String,
       required: true,
       unique: false,
     },
