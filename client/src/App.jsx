@@ -15,13 +15,21 @@ import MyGigs from "./pages/mygigs/MyGigs";
 import "./app.scss";
 import Slide from "./components/slide/Slide";
 
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+
 const App = () => {
   const Layout = () => {
     return (
       <div className="app">
-        <Navbar />
-        <Outlet />
-        <Footer />
+        <QueryClientProvider client={QueryClient}>
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </QueryClientProvider>
       </div>
     );
   };
