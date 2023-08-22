@@ -22,6 +22,7 @@ import {
 } from "@tanstack/react-query";
 
 const App = () => {
+  const queryClient = new QueryClient();
   const Layout = () => {
     return (
       <div className="app">
